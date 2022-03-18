@@ -13,11 +13,21 @@ def amir(url):
         link.append((i.text,i['href']))
     return link
 
+def image_download(imgurl):
+    r=requests.get(url=imgurl,headers=headers)
+    soup=BeautifulSoup(r.content, features="html.parser")
+    image_div=soup.find("img",{"class":"AssetCard-module__image___dams4"})
+    x= image_div['src']
+    print(x, "\n")
+    return x
+
 def main():
-    link=amir("https://www.gettyimages.in/photos/aamir-khan-actor")
+    links=amir("https://www.gettyimages.in/photos/aamir-khan-actor")
     head="https://www.gettyimages.in"
-    for name, link in link:
-        print(name, "   :   ",head+link)
+    for name, link in links:
+        # print(name, "   :   ",head+link)
+        image_download(head+link)
+
     
 
 if __name__=="__main__":
