@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import wget
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
 
 
@@ -25,10 +26,7 @@ def main():
     links=amir("https://www.gettyimages.in/photos/aamir-khan-actor")
     head="https://www.gettyimages.in"
     for name, link in links:
-        # print(name, "   :   ",head+link)
-        image_download(head+link)
-
-    
+        wget.download(image_download(head+link))
 
 if __name__=="__main__":
     main()
